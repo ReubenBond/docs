@@ -2,8 +2,8 @@
   href: index.yml
   items:
       - name: Overview
-        href: index.yml
-        homepage: index.yml
+        href: overview.md
+        homepage: overview.md
 
       - name: What are Grains?
         items:
