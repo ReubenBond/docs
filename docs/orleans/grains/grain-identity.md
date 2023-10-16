@@ -6,6 +6,10 @@ ms.date: 07/03/2024
 
 # Grain identity
 
+In object-oriented environments, the identity of an object is hard to distinguish from a reference to it. Thus, when an object is created using new, the reference you get back represents all aspects of its identity except those that map the object to some external entity that it represents.
+
+In distributed systems, object references cannot represent instance identity, since references are typically limited to a single address space. That is certainly the case for .NET references. Furthermore, a grain must have an identity regardless of whether it is active, so that we can activate it on demand. Therefore grains have a primary key. The primary key can be a <xref:System.Guid>, a <xref:System.Int64>, or a <xref:System.String>.
+
 Grains in Orleans each have a single, unique, user-defined identifier which consists of two parts:
 
 1. The grain _type_ name, which uniquely identifies the grain class.
@@ -51,17 +55,7 @@ For convenience, Orleans exposes methods which allow construction of grain keys 
 The primary key is scoped to the grain type.
 Therefore, the complete identity of a grain is formed from the grain's type and its key.
 
-The caller of the grain decides which scheme should be used. The options are:
 
-* <xref:System.Guid?displayProperty=nameWithType>
-* <xref:System.Int64?displayProperty=nameWithType>
-* <xref:System.String?displayProperty=nameWithType>
-* <xref:System.Guid?displayProperty=nameWithType> and <xref:System.String?displayProperty=nameWithType>
-* <xref:System.Int64?displayProperty=nameWithType> and <xref:System.String?displayProperty=nameWithType>
-
-Because the underlying data is the same, the schemes can be used interchangeably: they are all encoded as strings.
-
-Situations that require a singleton grain instance can use a well-known, fixed value such as `"default"`. This is merely a convention, but by adhering to this convention it becomes clear at the caller site that a singleton grain is in use.
 
 ### Using globally unique identifiers (GUIDs) as keys
 
