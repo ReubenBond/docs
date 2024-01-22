@@ -227,6 +227,15 @@ A grain class can optionally override the <xref:Orleans.Grain.OnActivateAsync%2A
 
 While `OnActivateAsync`, if overridden, is always called as part of the grain activation process, `OnDeactivateAsync` is not guaranteed to get called in all situations, for example, in case of a server failure or other abnormal event. Because of that, applications should not rely on `OnDeactivateAsync` for performing critical operations such as the persistence of state changes. They should use it only for best-effort operations.
 
+### Configure response timeout
+
+Calls to grain methods will timeout if a response is not received within a specified time period. By default, this period is **30 seconds**. You can configure the default response timeout by configuring the <xref:Orleans.Configuration.MessagingOptions.ResponseTimeout> property:
+
+* By configuring <xref:Orleans.Configuration.MessagingOptions.ResponseTimeout> on <xref:Orleans.Configuration.ClientMessagingOptions>, on an external client.
+* By configuring <xref:Orleans.Configuration.MessagingOptions.ResponseTimeout> on <xref:Orleans.Configuration.SiloMessagingOptions>, on a server.
+
+Response timeout can also be configured on a per-method basis using the <xref:Orleans.ResponseTimeoutAttribute>
+
 ## See also
 
 - [Grain extensions](grain-extensions.md)
