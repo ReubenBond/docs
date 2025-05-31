@@ -34,6 +34,8 @@ items:
         href: grains/observers.md
       - name: Cancellation
         href: grains/cancellation-tokens.md
+      - name: Stream data with IAsyncEnumerable
+        href: grains/async-enumerable.md
       - name: Request scheduling
         href: grains/request-scheduling.md
       - name: Request context

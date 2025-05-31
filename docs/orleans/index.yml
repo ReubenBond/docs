@@ -72,6 +72,9 @@ conceptualContent:
               - itemType: overview
                 text: Grain observers
                 url: grains/observers.md
+              - itemType: how-to-guide
+                text: Stream data with IAsyncEnumerable
+                url: grains/async-enumerable.md
               - itemType: overview
                 text: Grain interceptors
                 url: grains/interceptors.md
