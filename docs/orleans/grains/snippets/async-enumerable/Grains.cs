@@ -4,96 +4,94 @@ using System.Threading.Channels;
 namespace GrainCallStreaming;
 
 /// <summary>
-/// Grain implementation that demonstrates IAsyncEnumerable streaming using channels.
+/// A single grain implementation that demonstrates all IAsyncEnumerable concepts,
+/// building from simple to advanced scenarios with consistent CancellationToken usage.
 /// </summary>
-public class StreamingGrain : Grain, IStreamingGrain
+public class DataStreamGrain : Grain, IDataStreamGrain
 {
-    private readonly Channel<string> _dataChannel = Channel.CreateUnbounded<string>();
+    private readonly Channel<string> _realtimeChannel = Channel.CreateUnbounded<string>();
 
-    public Task AddData(string data)
+    // === CORE STREAMING METHOD (foundation for all scenarios) ===
+
+    /// <summary>
+    /// Core streaming method that demonstrates proper cancellation token handling.
+    /// All other streaming methods build upon this foundation.
+    /// </summary>
+    public async IAsyncEnumerable<string> GetDataStream(
+        int count,
+        int delayMs = 100,
+        [EnumeratorCancellation] CancellationToken cancellationToken = default)
     {
-        if (!_dataChannel.Writer.TryWrite(data))
+        for (int i = 0; i < count; i++)
         {
-            throw new InvalidOperationException("Channel is closed");
+            // Check for cancellation before each iteration
+            cancellationToken.ThrowIfCancellationRequested();
+
+            // Pass cancellation token to async operations
+            await Task.Delay(delayMs, cancellationToken);
+            yield return $"Item {i}";
         }
-        return Task.CompletedTask;
     }
 
-    public ValueTask Complete()
+    // === REAL-TIME STREAMING (builds on core streaming with channels) ===
+
+    /// <summary>
+    /// Gets a real-time data stream with cancellation support.
+    /// Demonstrates channel-based streaming that respects cancellation tokens.
+    /// </summary>
+    public async IAsyncEnumerable<string> GetRealtimeStream(
+        [EnumeratorCancellation] CancellationToken cancellationToken = default)
     {
-        _dataChannel.Writer.Complete();
+        await foreach (var item in _realtimeChannel.Reader.ReadAllAsync(cancellationToken))
+        {
+            yield return item;
+        }
+    }
+
+    /// <summary>
+    /// Writes data to the real-time stream for immediate consumption.
+    /// </summary>
+    public ValueTask WriteToRealtimeStream(string data)
+    {
+        if (!_realtimeChannel.Writer.TryWrite(data))
+        {
+            throw new InvalidOperationException("Real-time stream has been completed");
+        }
         return ValueTask.CompletedTask;
     }
 
-    public IAsyncEnumerable<string> GetDataStream()
+    /// <summary>
+    /// Signals completion of the real-time stream.
+    /// </summary>
+    public ValueTask CompleteRealtimeStream()
     {
-        return _dataChannel.Reader.ReadAllAsync();
+        _realtimeChannel.Writer.Complete();
+        return ValueTask.CompletedTask;
     }
 
-    public IAsyncEnumerable<string> GetDataStreamWithCancellation(CancellationToken cancellationToken = default)
-    {
-        return _dataChannel.Reader.ReadAllAsync(cancellationToken);
-    }
-}
+    // === COMPLEX DATA PROCESSING (builds on all previous concepts) ===
 
-/// <summary>
-/// Grain implementation that generates numbers using async generator methods.
-/// </summary>
-public class NumberGeneratorGrain : Grain, INumberGeneratorGrain
-{
-    public async IAsyncEnumerable<int> GenerateNumbers(
-        int count,
-        int delayMs,
-        [EnumeratorCancellation] CancellationToken cancellationToken = default)
-    {
-        for (int i = 0; i < count; i++)
-        {
-            cancellationToken.ThrowIfCancellationRequested();
-
-            await Task.Delay(delayMs, cancellationToken);
-            yield return i;
-        }
-    }
-
-    public async IAsyncEnumerable<long> GenerateFibonacci(
-        int count,
-        [EnumeratorCancellation] CancellationToken cancellationToken = default)
-    {
-        long a = 0, b = 1;
-
-        for (int i = 0; i < count; i++)
-        {
-            cancellationToken.ThrowIfCancellationRequested();
-
-            yield return a;
-
-            (a, b) = (b, a + b);
-
-            // Add a small delay to make the streaming effect visible
-            await Task.Delay(50, cancellationToken);
-        }
-    }
-}
-
-/// <summary>
-/// Grain implementation that demonstrates batch processing scenarios.
-/// </summary>
-public class BatchProcessorGrain : Grain, IBatchProcessorGrain
-{
-    public async IAsyncEnumerable<ProcessingResult> ProcessLargeDataset(
+    /// <summary>
+    /// Demonstrates complex object streaming with processing simulation.
+    /// Combines cancellation, complex objects, and variable processing times.
+    /// </summary>
+    public async IAsyncEnumerable<ProcessingResult> GetProcessedDataStream(
         int itemCount,
+        int minDelayMs = 50,
+        int maxDelayMs = 300,
         [EnumeratorCancellation] CancellationToken cancellationToken = default)
     {
         for (int i = 0; i < itemCount; i++)
         {
             cancellationToken.ThrowIfCancellationRequested();
 
-            // Simulate processing work
-            await Task.Delay(Random.Shared.Next(50, 200), cancellationToken);
+            // Simulate variable processing time within specified range
+            var processingTime = Random.Shared.Next(minDelayMs, maxDelayMs + 1);
+            await Task.Delay(processingTime, cancellationToken);
 
             yield return new ProcessingResult(
                 Id: i,
-                Data: $"Processed item {i}",
+                Data: $"Processed item {i} (took {processingTime}ms)",
                 ProcessedAt: DateTime.UtcNow
             );
         }

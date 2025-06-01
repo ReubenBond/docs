@@ -1,60 +1,45 @@
 namespace GrainCallStreaming;
 
 /// <summary>
-/// Interface for a grain that demonstrates IAsyncEnumerable streaming capabilities.
+/// A single grain interface that demonstrates all IAsyncEnumerable concepts,
+/// building from simple to advanced scenarios.
 /// </summary>
-public interface IStreamingGrain : IGrainWithStringKey
-{
-    /// <summary>
-    /// Adds data to the stream.
-    /// </summary>
-    Task AddData(string data);
+public interface IDataStreamGrain : IGrainWithStringKey
+{    // === BASIC STREAMING (builds foundation) ===
 
     /// <summary>
-    /// Signals that no more data will be added to the stream.
+    /// Basic async enumerable that generates simple data with cancellation support.
+    /// Demonstrates the foundation of IAsyncEnumerable in Orleans.
     /// </summary>
-    ValueTask Complete();
+    IAsyncEnumerable<string> GetDataStream(int count, int delayMs = 100, CancellationToken cancellationToken = default);
+
+    // === REAL-TIME STREAMING (builds on basic streaming) ===
 
     /// <summary>
-    /// Gets all data as an async enumerable stream.
+    /// Gets a real-time data stream that can be written to by producers.
+    /// Demonstrates channel-based streaming with cancellation support.
     /// </summary>
-    IAsyncEnumerable<string> GetDataStream();
+    IAsyncEnumerable<string> GetRealtimeStream(CancellationToken cancellationToken = default);
 
     /// <summary>
-    /// Gets data stream with cancellation support.
+    /// Adds data to the real-time stream for immediate consumption.
     /// </summary>
-    IAsyncEnumerable<string> GetDataStreamWithCancellation(CancellationToken cancellationToken = default);
+    ValueTask WriteToRealtimeStream(string data);
+
+    /// <summary>
+    /// Signals completion of the real-time stream.
+    /// </summary>
+    ValueTask CompleteRealtimeStream();    // === COMPLEX DATA PROCESSING (builds on all previous concepts) ===
+
+    /// <summary>
+    /// Demonstrates complex object streaming with processing simulation.
+    /// Combines all concepts: cancellation, complex objects, and variable processing times.
+    /// </summary>
+    IAsyncEnumerable<ProcessingResult> GetProcessedDataStream(int itemCount, int minDelayMs = 50, int maxDelayMs = 300, CancellationToken cancellationToken = default);
 }
 
 /// <summary>
-/// Interface for a grain that generates numbers using async enumerable.
-/// </summary>
-public interface INumberGeneratorGrain : IGrainWithStringKey
-{
-    /// <summary>
-    /// Generates a sequence of numbers with specified delay between each number.
-    /// </summary>
-    IAsyncEnumerable<int> GenerateNumbers(int count, int delayMs, CancellationToken cancellationToken = default);
-
-    /// <summary>
-    /// Generates fibonacci numbers up to a specified count.
-    /// </summary>
-    IAsyncEnumerable<long> GenerateFibonacci(int count, CancellationToken cancellationToken = default);
-}
-
-/// <summary>
-/// Interface for a grain that demonstrates batch processing scenarios.
-/// </summary>
-public interface IBatchProcessorGrain : IGrainWithStringKey
-{
-    /// <summary>
-    /// Processes a large dataset and returns results as they become available.
-    /// </summary>
-    IAsyncEnumerable<ProcessingResult> ProcessLargeDataset(int itemCount, CancellationToken cancellationToken = default);
-}
-
-/// <summary>
-/// Represents the result of a processing operation.
+/// Represents a processing result with metadata.
 /// </summary>
 [GenerateSerializer]
 public record ProcessingResult(int Id, string Data, DateTime ProcessedAt);
