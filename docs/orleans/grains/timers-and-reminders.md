@@ -221,7 +221,7 @@ The <xref:Orleans.Reminders.Cosmos.CosmosReminderTableOptions> class provides th
 
 ### .NET Aspire integration for reminders
 
-:::zone target="docs" pivot="orleans-8-0,orleans-9-0,orleans-10-0"
+:::zone target="docs" pivot="orleans-10-0,orleans-9-0,orleans-8-0"
 
 When using [.NET Aspire](../host/aspire-integration.md), you can configure Orleans reminders declaratively in your AppHost project. Aspire automatically injects the necessary configuration into your silo projects via environment variables.
 

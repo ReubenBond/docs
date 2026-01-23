@@ -8,7 +8,7 @@ zone_pivot_groups: orleans-version
 
 # Orleans and .NET Aspire integration
 
-:::zone target="docs" pivot="orleans-8-0,orleans-9-0,orleans-10-0"
+:::zone target="docs" pivot="orleans-10-0,orleans-9-0,orleans-8-0"
 
 [.NET Aspire](/dotnet/aspire/get-started/aspire-overview) provides a streamlined approach to building cloud-native applications with built-in support for Orleans. Starting with Orleans 8.0, you can use Aspire to orchestrate your Orleans cluster, manage backing resources (like Redis or Azure Storage), and automatically configure service discovery, observability, and health checks.
 

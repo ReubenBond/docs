@@ -9,7 +9,7 @@ zone_pivot_groups: orleans-version
 
 # Troubleshoot deployments
 
-:::zone target="docs" pivot="orleans-7-0,orleans-8-0,orleans-9-0,orleans-10-0"
+:::zone target="docs" pivot="orleans-10-0,orleans-9-0,orleans-8-0,orleans-7-0"
 
 This page provides general guidelines for troubleshooting common Orleans deployment issues.
 

@@ -10,7 +10,7 @@ zone_pivot_groups: orleans-version
 
 All options classes used to configure Orleans are found in the `Orleans.Configuration` namespace. Many also have helper methods in the `Orleans.Hosting` namespace.
 
-:::zone pivot="orleans-7-0,orleans-8-0,orleans-9-0,orleans-10-0"
+:::zone pivot="orleans-10-0,orleans-9-0,orleans-8-0,orleans-7-0"
 
 ## Common core options for client and silo builders
 

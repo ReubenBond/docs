@@ -9,7 +9,7 @@ ms.custom: sfi-ropc-nochange
 
 # Grain persistence
 
-:::zone target="docs" pivot="orleans-8-0,orleans-9-0,orleans-10-0"
+:::zone target="docs" pivot="orleans-10-0,orleans-9-0,orleans-8-0"
 
 Grains can have multiple named persistent data objects associated with them. These state objects load from storage during grain activation so they're available during requests. Grain persistence uses an extensible plugin model, allowing you to use storage providers for any database. This persistence model is designed for simplicity and isn't intended to cover all data access patterns. Grains can also access databases directly without using the grain persistence model.
 
@@ -40,7 +40,7 @@ You can find Orleans grain storage providers on [NuGet](https://www.nuget.org/pa
 
 Grains interact with their persistent state using <xref:Orleans.Runtime.IPersistentState%601>, where `TState` is the serializable state type:
 
-:::zone target="docs" pivot="orleans-7-0,orleans-8-0,orleans-9-0,orleans-10-0"
+:::zone target="docs" pivot="orleans-10-0,orleans-9-0,orleans-8-0,orleans-7-0"
 
 :::code language="csharp" source="./snippets/persistence/Interfaces.cs" id="persistent_state_interface":::
 
@@ -104,7 +104,7 @@ Before a grain can use persistence, you must configure a storage provider on the
 
 First, configure storage providers, one for profile state and one for cart state:
 
-:::zone target="docs" pivot="orleans-7-0,orleans-8-0,orleans-9-0,orleans-10-0"
+:::zone target="docs" pivot="orleans-10-0,orleans-9-0,orleans-8-0,orleans-7-0"
 
 ### [Managed identity (recommended)](#tab/managed-identity)
 
@@ -223,7 +223,7 @@ The behavior of these methods corresponds to their counterparts on <xref:Orleans
 
 There are two parts to the state persistence APIs: the API exposed to the grain via <xref:Orleans.Runtime.IPersistentState%601> or <xref:Orleans.Grain%601>, and the storage provider API, centered around <xref:Orleans.Storage.IGrainStorage>—the interface storage providers must implement:
 
-:::zone target="docs" pivot="orleans-7-0,orleans-8-0,orleans-9-0,orleans-10-0"
+:::zone target="docs" pivot="orleans-10-0,orleans-9-0,orleans-8-0,orleans-7-0"
 
 :::code language="csharp" source="snippets/persistence/StorageProviderTypes.cs" id="grain_storage_interface":::
 
@@ -288,7 +288,7 @@ To register a named instance of <xref:Orleans.Storage.IGrainStorage>, use the <x
 
 ## Redis grain persistence
 
-:::zone target="docs" pivot="orleans-7-0,orleans-8-0,orleans-9-0,orleans-10-0"
+:::zone target="docs" pivot="orleans-10-0,orleans-9-0,orleans-8-0,orleans-7-0"
 
 [Redis](https://redis.io) is a popular in-memory data store that can be used for grain persistence. The [Microsoft.Orleans.Persistence.Redis](https://www.nuget.org/packages/Microsoft.Orleans.Persistence.Redis) package provides a grain storage provider backed by Redis.
 

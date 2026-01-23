@@ -7,7 +7,7 @@ zone_pivot_groups: orleans-version
 
 # Use cancellation tokens in Orleans grains
 
-:::zone target="docs" pivot="orleans-9-0,orleans-10-0,orleans-8-0,orleans-7-0,orleans-3-x"
+:::zone target="docs" pivot="orleans-10-0,orleans-9-0,orleans-8-0,orleans-7-0,orleans-3-x"
 
 Orleans supports cooperative cancellation in grain methods through the standard <xref:System.Threading.CancellationToken>. This feature lets you stop long-running operations early, cancel work that's no longer needed, and improve your application's responsiveness and resource utilization.
 

@@ -32,7 +32,7 @@ Different stream providers delivering events over durable queues exhibit similar
 
 :::zone-end
 
-:::zone target="docs" pivot="orleans-8-0,orleans-9-0,orleans-10-0"
+:::zone target="docs" pivot="orleans-10-0,orleans-9-0,orleans-8-0"
 
 ## .NET Aspire integration for streaming
 

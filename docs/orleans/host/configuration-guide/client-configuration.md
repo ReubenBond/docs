@@ -9,7 +9,7 @@ ms.custom: sfi-ropc-nochange
 
 # Client configuration
 
-:::zone target="docs" pivot="orleans-7-0,orleans-8-0,orleans-9-0,orleans-10-0"
+:::zone target="docs" pivot="orleans-10-0,orleans-9-0,orleans-8-0,orleans-7-0"
 
 Configure a client for connecting to a cluster of silos and sending requests to grains programmatically via an <xref:Microsoft.Extensions.Hosting.IHostBuilder> and several supplemental option classes. Like silo options, client option classes follow the [Options pattern in .NET](../../../core/extensions/options.md).
 
@@ -24,7 +24,7 @@ Configure a client for connecting to a cluster of silos and sending requests to 
 > [!TIP]
 > If you just want to start a local silo and a local client for development purposes, see [Local development configuration](local-development-configuration.md).
 
-:::zone target="docs" pivot="orleans-8-0,orleans-9-0,orleans-10-0"
+:::zone target="docs" pivot="orleans-10-0,orleans-9-0,orleans-8-0"
 
 > [!TIP]
 > If you're using [.NET Aspire](../aspire-integration.md), client configuration is handled automatically. Aspire injects <xref:Orleans.Configuration.ClusterOptions.ClusterId>, <xref:Orleans.Configuration.ClusterOptions.ServiceId>, and clustering provider settings via environment variables, so you can use the simpler parameterless <xref:Microsoft.Extensions.Hosting.OrleansClientGenericHostExtensions.UseOrleansClient*> method. See [Orleans and .NET Aspire integration](../aspire-integration.md) for the recommended approach.
@@ -41,7 +41,7 @@ There are several key aspects of client configuration:
 
 Example of a client configuration:
 
-:::zone target="docs" pivot="orleans-7-0,orleans-8-0,orleans-9-0,orleans-10-0"
+:::zone target="docs" pivot="orleans-10-0,orleans-9-0,orleans-8-0,orleans-7-0"
 
 ### [Microsoft Entra ID (recommended)](#tab/entra-id)
 
@@ -123,7 +123,7 @@ Here, we set two things:
 
 ## Clustering provider
 
-:::zone target="docs" pivot="orleans-7-0,orleans-8-0,orleans-9-0,orleans-10-0"
+:::zone target="docs" pivot="orleans-10-0,orleans-9-0,orleans-8-0,orleans-7-0"
 
 ### [Microsoft Entra ID (recommended)](#tab/entra-id)
 

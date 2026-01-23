@@ -8,7 +8,7 @@ zone_pivot_groups: orleans-version
 
 # Activation collection
 
-:::zone target="docs" pivot="orleans-7-0,orleans-8-0,orleans-9-0,orleans-10-0"
+:::zone target="docs" pivot="orleans-10-0,orleans-9-0,orleans-8-0,orleans-7-0"
 This article applies to: ✔️ Orleans 7.x and later versions
 :::zone-end
 :::zone target="docs" pivot="orleans-3-x"
@@ -39,7 +39,7 @@ As a result, without burdening your application code, only recently used grain a
 
 **Collection age limit**
 
-:::zone target="docs" pivot="orleans-7-0,orleans-8-0,orleans-9-0,orleans-10-0"
+:::zone target="docs" pivot="orleans-10-0,orleans-9-0,orleans-8-0,orleans-7-0"
 The time after which an idle grain activation becomes subject to collection is called the Collection Age Limit. The default Collection Age Limit is 15 minutes, but you can change it globally or for individual grain classes.
 :::zone-end
 :::zone target="docs" pivot="orleans-3-x"
@@ -93,7 +93,7 @@ A grain activation is considered idle if it isn't processing any messages at the
 
 Configure activation collection using <xref:Orleans.Configuration.GrainCollectionOptions>:
 
-:::zone target="docs" pivot="orleans-7-0,orleans-8-0,orleans-9-0,orleans-10-0"
+:::zone target="docs" pivot="orleans-10-0,orleans-9-0,orleans-8-0,orleans-7-0"
 
 ```csharp
 siloBuilder.Configure<GrainCollectionOptions>(options =>

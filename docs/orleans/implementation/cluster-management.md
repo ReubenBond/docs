@@ -10,7 +10,7 @@ zone_pivot_groups: orleans-version
 
 Orleans provides cluster management via a built-in membership protocol, sometimes referred to as **Cluster membership**. The goal of this protocol is for all silos (Orleans servers) to agree on the set of currently alive silos, detect failed silos, and allow new silos to join the cluster.
 
-:::zone target="docs" pivot="orleans-9-0,orleans-10-0"
+:::zone target="docs" pivot="orleans-10-0,orleans-9-0"
 
 ## Membership protocol configuration
 
@@ -83,7 +83,7 @@ The membership protocol uses the following default configuration:
 
 :::zone-end
 
-:::zone target="docs" pivot="orleans-7-0,orleans-8-0,orleans-9-0,orleans-10-0,orleans-3-x"
+:::zone target="docs" pivot="orleans-10-0,orleans-9-0,orleans-8-0,orleans-7-0,orleans-3-x"
 
 The protocol relies on an external service to provide an abstraction of <xref:Orleans.IMembershipTable>. `IMembershipTable` is a flat, durable table used for two purposes. First, it serves as a rendezvous point for silos to find each other and for Orleans clients to find silos. Second, it stores the current membership view (list of alive silos) and helps coordinate agreement on this view.
 
@@ -141,7 +141,7 @@ The <xref:Orleans.Clustering.Redis.RedisClusteringOptions> class provides the fo
 
 :::zone-end
 
-:::zone target="docs" pivot="orleans-8-0,orleans-9-0,orleans-10-0"
+:::zone target="docs" pivot="orleans-10-0,orleans-9-0,orleans-8-0"
 
 ### .NET Aspire integration for clustering
 
@@ -257,7 +257,7 @@ For more information about Orleans and .NET Aspire integration, see [Orleans and
 
 :::zone-end
 
-:::zone target="docs" pivot="orleans-7-0,orleans-8-0,orleans-9-0,orleans-10-0,orleans-3-x"
+:::zone target="docs" pivot="orleans-10-0,orleans-9-0,orleans-8-0,orleans-7-0,orleans-3-x"
 
 ### Configure Cassandra clustering
 

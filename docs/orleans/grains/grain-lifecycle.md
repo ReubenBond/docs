@@ -8,7 +8,7 @@ zone_pivot_groups: orleans-version
 
 # Grain lifecycle overview
 
-:::zone target="docs" pivot="orleans-8-0,orleans-9-0,orleans-10-0"
+:::zone target="docs" pivot="orleans-10-0,orleans-9-0,orleans-8-0"
 
 Orleans grains use an observable lifecycle (see [Orleans Lifecycle](../implementation/orleans-lifecycle.md)) for ordered activation and deactivation. This allows grain logic, system components, and application logic to start and stop in an ordered manner during grain activation and collection.
 
@@ -230,7 +230,7 @@ public class MyGrain : Grain, IMyGrain
 }
 ```
 
-:::zone target="docs" pivot="orleans-8-0,orleans-9-0,orleans-10-0"
+:::zone target="docs" pivot="orleans-10-0,orleans-9-0,orleans-8-0"
 
 ## Grain migration
 

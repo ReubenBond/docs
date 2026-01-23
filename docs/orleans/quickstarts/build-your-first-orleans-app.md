@@ -183,7 +183,7 @@ Test the application in the browser using the following steps:
 
 ---
 
-:::zone target="docs" pivot="orleans-8-0,orleans-9-0,orleans-10-0"
+:::zone target="docs" pivot="orleans-10-0,orleans-9-0,orleans-8-0"
 
 ## Next steps: Production-ready Orleans with .NET Aspire
 

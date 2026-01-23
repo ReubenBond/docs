@@ -11,7 +11,7 @@ ms.custom: sfi-ropc-nochange
 
 Below are examples of typical configurations you can use for development and production deployments.
 
-:::zone target="docs" pivot="orleans-8-0,orleans-9-0,orleans-10-0"
+:::zone target="docs" pivot="orleans-10-0,orleans-9-0,orleans-8-0"
 
 ## Recommended: .NET Aspire configuration
 
@@ -129,7 +129,7 @@ For comprehensive documentation on Orleans and .NET Aspire integration, see [Orl
 
 For more information, see [Local development configuration](local-development-configuration.md).
 
-:::zone target="docs" pivot="orleans-8-0,orleans-9-0,orleans-10-0"
+:::zone target="docs" pivot="orleans-10-0,orleans-9-0,orleans-8-0"
 
 ## Traditional configurations (without Aspire)
 
@@ -137,7 +137,7 @@ The following sections describe traditional Orleans configurations that don't us
 
 :::zone-end
 
-:::zone target="docs" pivot="orleans-7-0,orleans-8-0,orleans-9-0,orleans-10-0"
+:::zone target="docs" pivot="orleans-10-0,orleans-9-0,orleans-8-0,orleans-7-0"
 
 ## Reliable production deployment using Azure
 
@@ -323,7 +323,7 @@ var client = new ClientBuilder()
 
 :::zone-end
 
-:::zone target="docs" pivot="orleans-7-0,orleans-8-0,orleans-9-0,orleans-10-0"
+:::zone target="docs" pivot="orleans-10-0,orleans-9-0,orleans-8-0,orleans-7-0"
 
 ## Reliable production deployment using SQL Server
 

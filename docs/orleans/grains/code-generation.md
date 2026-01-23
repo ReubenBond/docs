@@ -8,7 +8,7 @@ zone_pivot_groups: orleans-version
 
 # Orleans code generation
 
-:::zone target="docs" pivot="orleans-8-0,orleans-9-0,orleans-10-0"
+:::zone target="docs" pivot="orleans-10-0,orleans-9-0,orleans-8-0"
 
 Before Orleans 7.0, source generation was more manual and required explicit developer intervention. Starting with Orleans 7.0, code generation is automatic and typically requires no intervention. However, cases still exist where influencing code generation might be desired, for example, to generate code for types not automatically generated or for types in another assembly.
 
@@ -16,7 +16,7 @@ Before Orleans 7.0, source generation was more manual and required explicit deve
 
 ## Enable code generation
 
-:::zone target="docs" pivot="orleans-7-0,orleans-8-0,orleans-9-0,orleans-10-0"
+:::zone target="docs" pivot="orleans-10-0,orleans-9-0,orleans-8-0,orleans-7-0"
 
 Orleans generates C# source code for the app at build time. All projects, including the host, need the appropriate NuGet packages installed to enable code generation. The following packages are available:
 
@@ -36,7 +36,7 @@ The Orleans runtime uses generated code to ensure proper serialization of types 
 
 ### Build-time code generation
 
-:::zone target="docs" pivot="orleans-7-0,orleans-8-0,orleans-9-0,orleans-10-0"
+:::zone target="docs" pivot="orleans-10-0,orleans-9-0,orleans-8-0,orleans-7-0"
 
 At build time, Orleans generates code for all types marked with <xref:Orleans.GenerateSerializerAttribute>. If a type isn't marked with <xref:Orleans.GenerateSerializerAttribute>, Orleans won't serialize it.
 
@@ -66,7 +66,7 @@ Emit additional diagnostics at build time by specifying a value for `OrleansCode
 
 ### Initialization-time code generation
 
-:::zone target="docs" pivot="orleans-7-0,orleans-8-0,orleans-9-0,orleans-10-0"
+:::zone target="docs" pivot="orleans-10-0,orleans-9-0,orleans-8-0,orleans-7-0"
 
 In Orleans 7+, nothing happens during initialization. Code generation occurs only at build time.
 
@@ -86,7 +86,7 @@ In the preceding example, `builder` can be an instance of either <xref:Orleans.H
 
 ## Influence code generation
 
-:::zone target="docs" pivot="orleans-7-0,orleans-8-0,orleans-9-0,orleans-10-0"
+:::zone target="docs" pivot="orleans-10-0,orleans-9-0,orleans-8-0,orleans-7-0"
 
 When applying <xref:Orleans.GenerateSerializerAttribute> to a type, the <xref:Orleans.IdAttribute> can also be applied to uniquely identify the member. Likewise, an alias can be applied using the <xref:Orleans.AliasAttribute>. For more information on influencing code generation, see [Use Orleans serialization](../host/configuration-guide/serialization.md#use-orleans-serialization).
 

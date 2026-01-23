@@ -15,7 +15,7 @@ Applications interact with streams via APIs very similar to the well-known [Reac
 
 You start by using a [*stream provider*](stream-providers.md) to get a handle to a stream. You can think of a stream provider as a stream factory that allows implementers to customize streams behavior and semantics:
 
-:::zone target="docs" pivot="orleans-7-0,orleans-8-0,orleans-9-0,orleans-10-0"
+:::zone target="docs" pivot="orleans-10-0,orleans-9-0,orleans-8-0,orleans-7-0"
 
 :::code language="csharp" source="snippets/streaming/BasicStreaming.cs" id="get_stream_provider":::
 
@@ -117,7 +117,7 @@ The grain implementation `MyGrainType` can declare an attribute `[ImplicitStream
 
 The presence of `ImplicitStreamSubscription` causes the streaming runtime to automatically subscribe this grain to the stream and deliver stream events to it. However, the grain code still needs to tell the runtime how it wants events processed. Essentially, it needs to attach the <xref:Orleans.Streams.IAsyncObserver%601>. Therefore, when the grain activates, the grain code inside <xref:Orleans.Grain.OnActivateAsync*> needs to call:
 
-:::zone target="docs" pivot="orleans-7-0,orleans-8-0,orleans-9-0,orleans-10-0"
+:::zone target="docs" pivot="orleans-10-0,orleans-9-0,orleans-8-0,orleans-7-0"
 
 :::code language="csharp" source="snippets/streaming/ImplicitSubscriptions.cs" id="implicit_subscription_setup":::
 
@@ -147,7 +147,7 @@ For implicit subscriptions, the grain still needs to subscribe to attach the pro
 
 To process messages, implement the `IAsyncObserver<T>.OnNextAsync(...)` method to receive stream data and a sequence token. Alternatively, the `ResumeAsync` method can take a set of delegates representing the methods of the <xref:Orleans.Streams.IAsyncObserver%601> interface: `onNextAsync`, `onErrorAsync`, and `onCompletedAsync`.
 
-:::zone target="docs" pivot="orleans-7-0,orleans-8-0,orleans-9-0,orleans-10-0"
+:::zone target="docs" pivot="orleans-10-0,orleans-9-0,orleans-8-0,orleans-7-0"
 
 :::code language="csharp" source="snippets/streaming/ImplicitSubscriptions.cs" id="on_next_async":::
 
@@ -175,7 +175,7 @@ public override async Task OnActivateAsync()
 
 For explicit subscriptions, a grain must call <xref:Orleans.Streams.IAsyncObservable%601.SubscribeAsync*> to subscribe to the stream. This creates a subscription and attaches the processing logic. The explicit subscription exists until the grain unsubscribes. If a grain deactivates and reactivates, it's still explicitly subscribed, but no processing logic is attached. In this case, the grain needs to re-attach the processing logic. To do this, in its <xref:Orleans.Grain.OnActivateAsync*>, the grain first needs to find out its subscriptions by calling <xref:Orleans.Streams.IAsyncStream%601.GetAllSubscriptionHandles?displayProperty=nameWithType>. The grain must execute `ResumeAsync` on each handle it wishes to continue processing or `UnsubscribeAsync` on any handles it's done with. The grain can also optionally specify the <xref:Orleans.Streams.StreamSequenceToken> as an argument to the `ResumeAsync` calls, causing this explicit subscription to start consuming from that token.
 
-:::zone target="docs" pivot="orleans-7-0,orleans-8-0,orleans-9-0,orleans-10-0"
+:::zone target="docs" pivot="orleans-10-0,orleans-9-0,orleans-8-0,orleans-7-0"
 
 :::code language="csharp" source="snippets/streaming/ExplicitSubscriptions.cs" id="explicit_subscription_activate":::
 
@@ -241,7 +241,7 @@ Applications can choose where and how the Pub-Sub data is stored. The Pub-Sub co
 
 The following configures Pub-Sub to store its state in Azure tables.
 
-:::zone target="docs" pivot="orleans-7-0,orleans-8-0,orleans-9-0,orleans-10-0"
+:::zone target="docs" pivot="orleans-10-0,orleans-9-0,orleans-8-0,orleans-7-0"
 
 ### [Managed identity (recommended)](#tab/managed-identity)
 
@@ -270,7 +270,7 @@ This way, Pub-Sub data is durably stored in Azure Table. For initial development
 
 To use streams, you need to enable [stream providers](stream-providers.md) via the silo host or cluster client builders. Sample stream provider setup:
 
-:::zone target="docs" pivot="orleans-7-0,orleans-8-0,orleans-9-0,orleans-10-0"
+:::zone target="docs" pivot="orleans-10-0,orleans-9-0,orleans-8-0,orleans-7-0"
 
 ### [Managed identity (recommended)](#tab/managed-identity)
 

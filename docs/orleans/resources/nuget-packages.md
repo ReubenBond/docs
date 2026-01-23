@@ -9,7 +9,7 @@ zone_pivot_groups: orleans-version
 
 Consumers of Orleans rely on various NuGet packages to achieve specific desired behaviors. There are several common packages and abstractions, and many individual single purpose packages. This article provides insights to help developers learn which Orleans packages should be used.
 
-:::zone target="docs" pivot="orleans-7-0,orleans-8-0,orleans-9-0,orleans-10-0"
+:::zone target="docs" pivot="orleans-10-0,orleans-9-0,orleans-8-0,orleans-7-0"
 
 ## Key packages
 
@@ -52,7 +52,7 @@ One popular Orleans tool is the [OrleansDashboard](https://www.nuget.org/package
 
 :::zone-end
 
-:::zone target="docs" pivot="orleans-7-0,orleans-8-0,orleans-9-0,orleans-10-0"
+:::zone target="docs" pivot="orleans-10-0,orleans-9-0,orleans-8-0,orleans-7-0"
 
 ## Hosting
 
